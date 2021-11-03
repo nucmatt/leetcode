@@ -48,6 +48,7 @@ const maxProfit2 = (prices) => {
         if (prices[i] > maxSell) {
             maxSell = prices[i];
         }
+        // this comparison(and continually tracking maxProfit generally) is necessary to prevent a future lower buy price resetting the profit from a better prior buy/sell transaction(see prices3 for an example of this condition).
         if (maxProfit < maxSell - minBuy) {
             maxProfit = maxSell - minBuy;
         }

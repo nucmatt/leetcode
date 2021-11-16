@@ -24,7 +24,7 @@ const isPalindrome = (s) => {
     return true;
 };
 
-const s1 = "amanaplanacanalpanama"; // true
+const s1 = "A man, a plan, a canal: Panama"; // true
 const s2 = "raceacar"; // false
 const s3 = "  "; // true
 const s4 = "ab_a"; // true

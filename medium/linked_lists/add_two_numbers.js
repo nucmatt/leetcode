@@ -32,19 +32,60 @@ class SinglyLinkedList {
 		return this;
 	}
 }
-
 const createSLL = (arr) => {
     const dataArr = arr;
     const list = new SinglyLinkedList();
-    while (dataArr.length > 0) {        
-        const newNode = new ListNode(dataArr.pop());
-        list.push(newNode);
+    while (dataArr.length > 0) {  
+		list.push(dataArr.shift());
     }
     return list;
 }
 
-const arr1 = [3,4,2];
-const arr2 = [4,6,5];
+// You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+
+// You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+
+const addTwoNumbers = (l1, l2) => {
+    // base cases
+	if (!l2) return l1;
+	// define variables
+	const num1 = listToNum(l1);
+	const num2 = listToNum(l2);
+	let sum = num1 + num2;
+	// digits place for each number pushed to the list
+	let place = 1;
+	// logic
+		// convert lists to numbers
+		// add numbers together
+		// convert sum to list
+	const sumList = new SinglyLinkedList();
+	do {
+		const remainder = sum % Math.pow(10, place);
+		sumList.push(remainder / Math.pow(10, place - 1));
+		place++;
+		sum -= remainder;
+	} while (sum > 0)
+	// return the sum as a list
+	return sumList;
+};
+
+const listToNum = (list) => {
+	// the number the list represents
+	let num = 0;
+	// the order of magnitude of each number in the list
+	let place = 1;
+	let currNode = list.head;
+	// loop through list
+	while (currNode !== null) {
+		let currNum = currNode.val * place;
+		num += currNum;
+		currNode = currNode.next
+		place *= 10;
+	}
+	return num;
+}
+const arr1 = [2,4,3];
+const arr2 = [5,6,4];
 const arr3 = [0];
 const arr4 = [0];
 const arr5 = [9,9,9,9,9,9,9];
@@ -55,3 +96,7 @@ const l3 = createSLL(arr3);
 const l4 = createSLL(arr4);
 const l5 = createSLL(arr5);
 const l6 = createSLL(arr6);
+
+console.log(addTwoNumbers(l1,l2));
+console.log(addTwoNumbers(l3,l4));
+console.log(addTwoNumbers(l5,l6));

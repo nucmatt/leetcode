@@ -2,7 +2,6 @@
 
 // Brute force solution is to just add up each possible subarray and return the largest sum found. Time complexity O(n^2).
 
-
 // The solution below uses Kadane's algorithm to achieve a time complexity O(n).
 // see the following links for useful explanations/visuals of how Kadane's algorithm works:
 // https://en.wikipedia.org/wiki/Maximum_subarray_problem
@@ -10,26 +9,26 @@
 // https://coduber.com/kadanes-algorithm-maximum-sum-subarray-problem/
 const maxSubArray = (nums) => {
 	// base cases
-    // Computer Science convention is that the sum of an empty array is 0.
+	// Computer Science convention is that the sum of an empty array is 0.
 	if (nums.length === 0) return 0;
 	if (nums.length === 1) return nums[0];
 	// define variables
-    // maxSum is the max sum of a seen subarray
+	// maxSum is the max sum of a seen subarray
 	let maxSum = -Infinity,
-    // currSum is the sum of the current subarray
+		// currSum is the sum of the current subarray
 		currSum = 0;
 	// logic
-    // loop through the given array, nums
+	// loop through the given array, nums
 	for (let i = 0; i < nums.length; i++) {
-        // add the current index value to the current subarray
-        currSum += nums[i];
-        // if current index value is greater than the current sum of the subarray, reset the subarray to be start at the current index
-        // this has the effect of moving the start of the current subarray to the current index(i.e. the new maximum subarray is currently only this index value)
+		// add the current index value to the current subarray
+		currSum += nums[i];
+		// if current index value is greater than the current sum of the subarray, reset the subarray to be start at the current index
+		// this has the effect of moving the start of the current subarray to the current index(i.e. the new maximum subarray is currently only this index value)
 		if (nums[i] > currSum) {
-            currSum = nums[i];
+			currSum = nums[i];
 		}
-        // if the sum of the current subarray is greater than the largest sum seen so far, then a new maximum subarray has been found
-        // this has the effect of moving the end of the maximum subarray to the current index
+		// if the sum of the current subarray is greater than the largest sum seen so far, then a new maximum subarray has been found
+		// this has the effect of moving the end of the maximum subarray to the current index
 		if (currSum > maxSum) {
 			maxSum = currSum;
 		}
@@ -45,3 +44,33 @@ const nums3 = [5, 4, -1, 7, 8]; // 23
 console.log(maxSubArray(nums1));
 console.log(maxSubArray(nums2));
 console.log(maxSubArray(nums3));
+
+const maxSubArray2 = (nums) => {
+	// base cases
+	if (nums.length === 1) return nums[0];
+	// create variables
+	let leftPtr = 0,
+		rightPtr = 1,
+		maxSum = nums[0],
+		currSum = nums[0];
+	// logic
+	while (rightPtr < nums.length) {
+		// check if currSum + right number is < right number
+		if (currSum + nums[rightPtr] < nums[rightPtr]) {
+			// if so currSum equals number at right pointer
+			currSum = nums[rightPtr];
+			// left pointer moves to right pointer
+			leftPtr = rightPtr;
+		// if not
+		} else {
+			// add right number to currSum
+			currSum += nums[rightPtr];
+		}
+		// maxSum is the higher of curr and max Sum
+		maxSum = Math.max(currSum, maxSum);
+		// right pointer moves right one space
+		rightPtr++;
+	}
+	// return statement
+	return maxSum;
+};

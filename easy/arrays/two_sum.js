@@ -23,3 +23,22 @@ const twoSum = (nums, target) => {
 console.log(twoSum(nums1, target1));
 console.log(twoSum(nums2, target2));
 console.log(twoSum(nums3, target3));
+
+const twoSum2 = (nums, target) => {
+    // define variables
+    // the map will contain every seen num in nums and it's index
+    const map = new Map();
+    // logic
+    // loop through nums
+        for (let i = 0; i < nums.length; i++) {
+            // term = target - nums[i](a term is a value in an arithmetic sequence)
+            const term = target - nums[i];
+            // if map has term, return terms index and current index
+            if (map.has(term)) {
+                return [map.get(term), i];
+            }
+            // else add the current num and index to the map
+            map.set(nums[i], i);
+        }
+    // return statement
+}

@@ -67,3 +67,26 @@ console.log(maxProfit(prices3));
 console.log(maxProfit2(prices1));
 console.log(maxProfit2(prices2));
 console.log(maxProfit2(prices3));
+
+const maxProfit2 = (prices) => {
+     // base cases
+    // define variables
+    let maxProfit = 0, buyPrice = prices[0];
+    // logic
+    // loop through prices starting at index 1
+    for (let i = 0; i < prices.length; i++) {
+        // if prices i is less than buy price
+        if (prices[i] < buyPrice) {
+            // set buy prices to prices i
+            buyPrice = prices[i];
+        // else 
+        } else {
+            // let current profit equal prices i minus buy price
+            let currProfit = prices[i] - buyPrice;
+            // max profit is higher of max or current profit
+            maxProfit = Math.max(maxProfit, currProfit);
+        }
+    }
+    // return statement
+    return maxProfit;
+}

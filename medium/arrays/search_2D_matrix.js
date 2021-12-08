@@ -35,41 +35,34 @@ const searchMatrixBinary = (matrix, target) => {
 	for (let i = matrix.length - 1; i >= 0; i--) {
 		// set row to the current index of the matrix
 		row = matrix[i];
-        if (row[0] === target) return true;
+		if (row[0] === target) return true;
 		// if first number in row is less than target
-        if (row[0] < target) {
-		    // return result of binary search of the row
-            return binarySearch(row, target);
-        }
+		if (row[0] < target) {
+			// return result of binary search of the row
+			let start = 0;
+			let end = row.length - 1;
+			let midpoint;
+			// move through the array
+			while (start <= end) {
+				midpoint = Math.floor((start + end) / 2);
+				// if midpoint value equals val
+				// return midpoint
+				if (row[midpoint] === target) return true;
+				// if arr value is < val
+				if (row[midpoint] < target) {
+					// discard lower half of arr
+					start = midpoint + 1;
+				}
+				// if arr value is > val
+				if (row[midpoint] > target) {
+					// discard upper half of arr
+					end = midpoint - 1;
+				}
+			}
+			// return -1 if val not found
+			return false;
+		}
 	}
 	// return statement
 	return false;
 };
-
-// binary search helper function
-const binarySearch = (arr, target) => {
-	let start = 0;
-	let end = arr.length - 1;
-	let midpoint;
-	// move through the array
-	while (start <= end) {
-        midpoint = Math.floor((start + end) / 2);
-		// if midpoint value equals val
-		    // return midpoint
-		if (arr[midpoint] === target) return true;
-		// if arr value is < val
-		if (arr[midpoint] < target) {
-			// discard lower half of arr
-			start = midpoint + 1;
-		}
-		// if arr value is > val
-		if (arr[midpoint] > target) {
-			// discard upper half of arr
-			end = midpoint - 1;
-		}
-	}
-	// return -1 if val not found
-	return false;
-};
-
-console.log(binarySearch([1,3,5,7], 8))

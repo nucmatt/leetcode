@@ -43,4 +43,28 @@ console.log(reverseListArray(head2));
 console.log(reverseListArray(head3));
 
 
+const reverseList2 = (head) => {
+    // base cases
+    if (!head) return head;
+    // define variables
+    // a trailing pointer to track the previous node visited
+    let prevNode = null;
+    // a pointer to track the current node being reversed
+    let currNode;
+    // logic
+    // while the head node is not null
+    while (head !== null) {
+        // move the current node pointer to the head
+        currNode = head;
+        // move the head up one node
+        head = head.next;
+        // set the current node's next value to point to the previous node
+        currNode.next = prevNode;
+        // move the previous node pointer up to the current node;
+        prevNode = currNode;
+    }
+    // return statement
+    // return prevNode, which will be the head of the reversed list
+    return prevNode;
+}
 

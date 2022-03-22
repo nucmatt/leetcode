@@ -39,7 +39,7 @@ const average = (salary) => {
     totalSalary -= (highSalary + lowSalary);
     // return statement
     // return the salary total found above, divided by the salary array length minus two(since highest and lowest are excluded)
-    return (totalSalary / (salary.length - 2)).toFixed(5);
+    return (totalSalary / (salary.length - 2));
 };
 
 console.log(average([4000,3000,1000,2000]));

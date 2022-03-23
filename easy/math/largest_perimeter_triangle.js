@@ -48,6 +48,27 @@ const largestPerimeter = (nums) => {
     return 0;
 };
 
+const largestPerimeter2 = (nums) => {
+	// base cases
+	// define variables
+	// logic
+	// all triangles require that the sum of the lengths of the two shorter sides must be greater than the length of the third side(Triangle Inequality Theorem 1).
+	// first we should sort the nums array highest to lowest
+	nums.sort((a, b) => b - a);
+
+    // loop over the array from start to finish
+    for (let i = 0; i + 2 < nums.length; i++) {
+        // check to see if nums[i+1] + nums[i+2] > nums[i]
+        if (nums[i] < nums[i+1] + nums[i+2]) {
+            // if so return the sum of those three numbers
+            return nums[i] + nums[i+1] + nums[i+2]
+        }
+    }
+	// return statement
+	// if the loop completes then we have not formed a triangle
+    return 0;
+};
+
 console.log(largestPerimeter([2, 1, 2]));
 console.log(largestPerimeter([2, 1, 3, 4]));
 console.log(largestPerimeter([2, 1, 1]));

@@ -77,6 +77,31 @@ const nearestValidPoint2 = (x,y,points) => {
     return closestIndex;
 }
 
-console.log(nearestValidPoint2(3, 4, [[1,2],[3,1],[2,4],[2,3],[4,4]]));
-console.log(nearestValidPoint2(3, 4, [[3,4]]));
-console.log(nearestValidPoint2(3, 4, [[2,3]]));
+const nearestValidPoint3 = (x,y,points) => {
+    // base cases
+    // define variables
+    // the manhattan distance
+    let shortestDistance = Infinity;
+    // the user story calls for returning -1 if no match
+    let closestIndex = -1;
+    // logic
+    // we need to loop over the points array and check if the entry's x or y equals the provided x or y. 
+    points.forEach(([x1, y1], index) => {
+        if (x1 === x || y1 === y) {
+            // calculate the current manhattan distance to compare with shortest distance
+            const currDistance = Math.abs((x - x1) + (y - y1));
+            if (currDistance < shortestDistance) {
+                shortestDistance = currDistance;
+                closestIndex = index;
+            }
+
+        }
+    })
+    // return statement
+    // once the loop completes, return the closest index
+    return closestIndex;
+}
+
+console.log(nearestValidPoint3(3, 4, [[1,2],[3,1],[2,4],[2,3],[4,4]]));
+console.log(nearestValidPoint3(3, 4, [[3,4]]));
+console.log(nearestValidPoint3(3, 4, [[2,3]]));

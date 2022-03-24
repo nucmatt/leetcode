@@ -89,7 +89,7 @@ const nearestValidPoint3 = (x,y,points) => {
     points.forEach(([x1, y1], index) => {
         if (x1 === x || y1 === y) {
             // calculate the current manhattan distance to compare with shortest distance
-            const currDistance = Math.abs((x - x1) + (y - y1));
+            const currDistance = Math.abs((x - x1)) + Math.abs((y - y1));
             if (currDistance < shortestDistance) {
                 shortestDistance = currDistance;
                 closestIndex = index;

@@ -53,6 +53,30 @@ const nearestValidPoint = (x,y,points) => {
     return closestIndex;
 }
 
-console.log(nearestValidPoint(3, 4, [[1,2],[3,1],[2,4],[2,3],[4,4]]));
-console.log(nearestValidPoint(3, 4, [[3,4]]));
-console.log(nearestValidPoint(3, 4, [[2,3]]));
+const nearestValidPoint2 = (x,y,points) => {
+    // base cases
+    // define variables
+    // the manhattan distance
+    let distance = Infinity;
+    // the user story calls for returning -1 if no match
+    let closestIndex = -1;
+    // logic
+    // we need to loop over the points array and check if the entry's x or y equals the provided x or y. 
+    for (let i = 0; i < points.length; i++) {
+        // if there is a match, calculate the manhattan distance of the other coordinate(we don't care about the matching coordinate, it will always be 0)
+        if (x === points[i][0] || y === points[i][1]) {
+            // if the current manhattan distance is less than the stored, set stored distance to be the current distance and closest index to the current index.
+            if (Math.abs((x - points[i][0]) + (y - points[i][1])) < distance) {
+                closestIndex = i;
+                distance = Math.abs((x - points[i][0]) + (y - points[i][1]));
+            }
+        }
+    }
+    // return statement
+    // once the loop completes, return the closest index
+    return closestIndex;
+}
+
+console.log(nearestValidPoint2(3, 4, [[1,2],[3,1],[2,4],[2,3],[4,4]]));
+console.log(nearestValidPoint2(3, 4, [[3,4]]));
+console.log(nearestValidPoint2(3, 4, [[2,3]]));
